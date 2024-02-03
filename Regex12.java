@@ -13,7 +13,7 @@ public class Regex12 {
     //     return match.matches();
     // }
 
-    public String ssnRegex(String testInput) {
+    public Object[] ssnRegex(String testInput) {
         String regexPattern = "^(?![9]|[6]{3}|[0]{3})\\d{3}[ -]?(?![0]{2})\\d{2}[ -]?(?![0]{4})\\d{4}$";
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
@@ -24,12 +24,12 @@ public class Regex12 {
             resultMatched = match.group();
             System.out.print("Matched: " + resultMatched + " with: " + testInput);
             matchFound = true;
-            return resultMatched;
+            return new Object[]{resultMatched, matchFound};
         }
         if (!(match.find()) && !matchFound) {
             System.out.println("Couldn't match: " + testInput);
         }
-        return "Couldn't match: " + testInput;
+        return new Object[]{("Couldn't match: " + testInput), matchFound};
     }
 }
 
