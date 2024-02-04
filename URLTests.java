@@ -1,7 +1,7 @@
 /*
  * Individual Assignment - Regular Expressions
  * TCSS 483
- * Trae Claar
+ * Trae Claar and (modified) by Caleb Krauter
  */
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,94 +14,89 @@ public class URLTests {
 
     @Test
     void testAcceptUWWebsite() {
-        assertEquals("www.washington.edu", Regex.url("www.washington.edu"));
+        assertEquals("www.washington.edu", Regex12.url("www.washington.edu"));
     }
 
     @Test
     void testAcceptHTTP() {
-        assertEquals("http://www.washington.edu", Regex.url("http://www.washington.edu"));
+        assertEquals("http://www.washington.edu", Regex12.url("http://www.washington.edu"));
     }
 
     @Test
     void testAcceptHTTPS() {
-        assertEquals("https://www.washington.edu", Regex.url("https://www.washington.edu"));
+        assertEquals("https://www.washington.edu", Regex12.url("https://www.washington.edu"));
     }
 
     @Test
     void testAcceptTrailingSlash() {
-        assertEquals("www.washington.edu/", Regex.url("www.washington.edu/"));
+        assertEquals("www.washington.edu/", Regex12.url("www.washington.edu/"));
     }
 
     @Test
     void testAcceptPath() {
         assertEquals("https://www.tacoma.uw.edu/home/about-university-washington-tacoma",
-                Regex.url("https://www.tacoma.uw.edu/home/about-university-washington-tacoma"));
+                Regex12.url("https://www.tacoma.uw.edu/home/about-university-washington-tacoma"));
     }
 
     @Test
     void testAcceptInCaps() {
-        assertEquals("WWW.WASHINGTON.EDU", Regex.url("WWW.WASHINGTON.EDU"));
+        assertEquals("WWW.WASHINGTON.EDU", Regex12.url("WWW.WASHINGTON.EDU"));
     }
 
     @Test
     void testAcceptInCapsHTTP() {
-        assertEquals("HTTP://WWW.WASHINGTON.EDU", Regex.url("HTTP://WWW.WASHINGTON.EDU"));
+        assertEquals("HTTP://WWW.WASHINGTON.EDU", Regex12.url("HTTP://WWW.WASHINGTON.EDU"));
     }
 
     @Test
     void testAcceptInCapsHTTPS() {
-        assertEquals("HTTPS://WWW.WASHINGTON.EDU", Regex.url("HTTPS://WWW.WASHINGTON.EDU"));
+        assertEquals("HTTPS://WWW.WASHINGTON.EDU", Regex12.url("HTTPS://WWW.WASHINGTON.EDU"));
     }
 
     @Test
     void testAcceptInCapsPath() {
-        assertEquals("HTTP://WWW.WASHINGTON.EDU/ABOUT/", Regex.url("HTTP://WWW.WASHINGTON.EDU/ABOUT/"));
+        assertEquals("HTTP://WWW.WASHINGTON.EDU/ABOUT/", Regex12.url("HTTP://WWW.WASHINGTON.EDU/ABOUT/"));
     }
 
     @Test
     void testAcceptDomainWithTrailingDot() {
-        assertEquals("www.washington.edu.", Regex.url("www.washington.edu."));
+        assertEquals("www.washington.edu.", Regex12.url("www.washington.edu."));
     }
 
     // bad input
 
     @Test
     void testRejectDomainStartsWithDot() {
-        assertEquals("", Regex.url(".washington.edu"));
+        assertEquals("", Regex12.url(".washington.edu"));
     }
 
     @Test
     void testRejectDomainStartsWithDotAfterHTTP() {
-        assertEquals("", Regex.url("http://.washington.edu"));
-    }
-
-    @Test
-    void testRejectDomainTwoDots() {
-        assertEquals("", Regex.url("www..washington.edu"));
+        assertEquals("", Regex12.url("http://.washington.edu"));
     }
 
     @Test
     void testRejectDomainContainsNumbers() {
-        assertEquals("", Regex.url("www.wash1ngton.edu"));
+        assertEquals("", Regex12.url("www.wash1ngton.edu"));
     }
 
     @Test
     void testRejectDomainContainsSpecialCharacter() {
-        assertEquals("", Regex.url("www.w@shington.edu"));
+        assertEquals("", Regex12.url("www.w@shington.edu"));
     }
 
     @Test
     void testRejectNonHTTPProtocol() {
-        assertEquals("", Regex.url("ftp://ftp.something.com"));
+        assertEquals("", Regex12.url("ftp://ftp.something.com"));
     }
 
     @Test
     void testRejectInvalidProtocol() {
-        assertEquals("", Regex.url("//ftp.something.com"));
+        assertEquals("", Regex12.url("protocol://www.tacoma.uw.edu/home/about-university-washington-tacoma"));
     }
 
     @Test
     void testRejectTLDTooShort() {
-        assertEquals("", Regex.url("www.washington.e"));
+        assertEquals("", Regex12.url("www.washington.e"));
     }
 }

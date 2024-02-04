@@ -14,83 +14,83 @@ public class PasswordTests {
 
     @Test
     void testAcceptDefinitelyMyPassword() {
-        assertEquals("PasSw.rD1!", Regex.pwd("PasSw.rD1!"));
+        assertEquals("PasSw.rD1!", Regex12.password("PasSw.rD1!"));
     }
 
     @Test
     void testAcceptThreeConsecutiveLowercase() {
-        assertEquals("PasSworD1!", Regex.pwd("PasSworD1!"));
+        assertEquals("PasSworD1!", Regex12.password("PasSworD1!"));
     }
 
     @Test
     void testAcceptNotStartWithUppercase() {
-        assertEquals("pasSworD1!", Regex.pwd("pasSworD1!"));
+        assertEquals("pasSworD1!", Regex12.password("pasSworD1!"));
     }
 
     @Test
     void testAcceptOneUppercase() {
-        assertEquals("Pas,wor,1!", Regex.pwd("Pas,wor,1!"));
+        assertEquals("Pas,wor,1!", Regex12.password("Pas,wor,1!"));
     }
 
     @Test
     void testAcceptOneLowercase() {
-        assertEquals("PASsWOR,1!", Regex.pwd("PASsWOR,1!"));
+        assertEquals("PASsWOR,1!", Regex12.password("PASsWOR,1!"));
     }
 
     @Test
     void testAcceptFourConsecutiveUppercase() {
-        assertEquals("PASS.WoR,1!", Regex.pwd("PASS.WoR,1!"));
+        assertEquals("PASS.WoR,1!", Regex12.password("PASS.WoR,1!"));
     }
 
     @Test
     void testAcceptConsecutivePunctuation() {
-        assertEquals("PAsS..WOR,1!", Regex.pwd("PAsS..WOR,1!"));
+        assertEquals("PAsS..WOR,1!", Regex12.password("PAsS..WOR,1!"));
     }
 
     @Test
     void testAcceptMoreThan1Digit() {
-        assertEquals("PAsS.WOR,12!", Regex.pwd("PAsS.WOR,12!"));
+        assertEquals("PAsS.WOR,12!", Regex12.password("PAsS.WOR,12!"));
     }
 
     // bad input
 
     @Test
     void testRejectLessThan10Characters() {
-        assertEquals("", Regex.pwd("PasSwrD1!"));
+        assertEquals("", Regex12.password("PasSwrD1!"));
     }
 
     @Test
     void testReject4ConsecutiveLowercase() {
-        assertEquals("", Regex.pwd("PASsworD1!"));
+        assertEquals("", Regex12.password("PASsworD1!"));
     }
 
     @Test
     void testReject5ConsecutiveLowercase() {
-        assertEquals("", Regex.pwd("PASsword1!"));
+        assertEquals("", Regex12.password("PASsword1!"));
     }
 
     @Test
     void testRejectNoUppercase() {
-        assertEquals("", Regex.pwd("pa.ss.wor.1!"));
+        assertEquals("", Regex12.password("pa.ss.wor.1!"));
     }
 
     @Test
     void testRejectNoLowercase() {
-        assertEquals("", Regex.pwd("PASSWORD1!"));
+        assertEquals("", Regex12.password("PASSWORD1!"));
     }
 
     @Test
     void testRejectNoDigit() {
-        assertEquals("", Regex.pwd("PASSWORD!!"));
+        assertEquals("", Regex12.password("PASSWORD!!"));
     }
 
     @Test
     void testRejectNoPunctuation() {
-        assertEquals("", Regex.pwd("PASSWORD11"));
+        assertEquals("", Regex12.password("PASSWORD11"));
     }
 
     @Test
     void testRejectSpecial() {
-        assertEquals("", Regex.pwd("P@$sWORD11"));
+        assertEquals("", Regex12.password("P@$sWORD11"));
     }
 }

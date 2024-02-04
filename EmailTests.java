@@ -1,7 +1,7 @@
-/*
+/**
  * Individual Assignment - Regular Expressions
  * TCSS 483
- * Trae Claar
+ * @author Trae Claar (modified) by Caleb Krauter
  */
 
 import static org.junit.jupiter.api.Assertions.*;

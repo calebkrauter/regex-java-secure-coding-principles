@@ -1,3 +1,5 @@
+import java.time.Year;
+import java.time.YearMonth;
 import java.util.regex.*;
 /**
  * @author Caleb Krauter
@@ -58,7 +60,7 @@ public class Regex12 {
     }
     
     static public String nameOnRoster(String testInput) {
-        String regexPattern = "^(([a-zA-z0-9.'\\- ]{1,99}){1}([,][ ]){1}){1}(([a-zA-z0-9.'\\- ]{1,99}){1}){1}(([,][ ]){1}([a-zA-z0-9.'\\- ]{1}){1}){1,99}$";
+        String regexPattern = "^(([A-Z.'\\- ]{1}[a-zA-Z.'\\- ]{0,99}){1}([,][ ]){1}){1}(([A-Z.'\\- ]{1}[a-zA-Z.'\\- ]{0,99}){1}){1}(([,][ ]){1}(([A-Z.'\\- ]{1,99}){1}){1,99})?$";
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher match = pattern.matcher(testInput);
@@ -71,9 +73,70 @@ public class Regex12 {
         // No match found so output an empty Stirng.
         return "";
     }
-    
+    //00/00/0000
     static public String date(String testInput) {
-        String regexPattern = "^(([^00]([0]){1}([0-9]){1})|([1]){1}([0-2]){1}){1}([-]|[/])(([0])([1-9])|([1])([0-9])|([2])([0-9])|([3])([0-1]){1}){1}([-]|[/])([0-9][0-9][0-9][0-9]){1}$";
+        String temp = testInput;
+        char[] characters = temp.toCharArray();
+        int theMonth = 0;
+        int theDay = 0;
+        int theYear = 0;
+        try {
+            for (int i = 0; i < characters.length; i++) {
+                if (i <= 1 && (characters[i] != '/' && characters[i] !='-')) {
+                    if (theMonth == 0) {
+                        theMonth = Integer.parseInt(String.valueOf(characters[i]));
+                    } else {
+                        theMonth = theMonth * 10 + Integer.parseInt(String.valueOf(characters[i]));
+                    }
+                    // System.out.println("The month is " + theMonth);
+    
+                } else if (i <= 4 && (characters[i] != '/' && characters[i] !='-')) {
+                    // System.out.println(characters[i]);
+    
+                    if (theDay == 0) {
+                        theDay = Integer.parseInt(String.valueOf(characters[i]));
+                    } else {
+                        theDay = theDay * 10 + Integer.parseInt(String.valueOf(characters[i]));
+                    }
+                    // System.out.println("The day is " + theDay);
+                } else if (i <= 9 && (characters[i] != '/' && characters[i] !='-')) {
+                    // System.out.println(characters[i]);
+    
+                    if (characters[6] == 0 && i == 5) {
+                        theYear = theYear % 1000;
+                    } else {
+                        theYear = theYear * 10 + Integer.parseInt(String.valueOf(characters[i]));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            return "";
+        }
+        
+        System.out.println("The month is " + theMonth);
+
+        System.out.println("The Day is " + theDay);
+        // System.out.println(theMonth);
+        // System.out.println(theYear);
+       
+        // Adjusts using Java's library for leap year.
+
+        String regexPattern;
+        if (theMonth == 4 || theMonth == 6 || theMonth == 9 || theMonth == 11) {
+            System.out.println("ENTER");
+            regexPattern = "^((([0]){1}([1-9]){1})|([1]){1}([0-2]){1}){1}([-]|[/])(([0])([1-9])|([1])([0-9])|([2])([0-9])|([3])([0]){1}){1}([-]|[/])([0-9][0-9][0-9][0-9]){1}$";
+        } else if (theMonth == 2) {
+            if (Year.isLeap(theYear)) {
+                regexPattern = "^((([0]){1}([1-9]){1})|([1]){1}([0-2]){1}){1}([-]|[/])(([0])([1-9])|([1])([0-9])|([2])([0-9]){1}){1}([-]|[/])([0-9][0-9][0-9][0-9]){1}$";
+            }
+            else {
+                regexPattern = "^((([0]){1}([1-9]){1})|([1]){1}([0-2]){1}){1}([-]|[/])(([0])([1-9])|([1])([0-9])|([2])([0-8]){1}){1}([-]|[/])([0-9][0-9][0-9][0-9]){1}$";
+            }
+        } else { // theMonth == (1 | 3 | 5 | 7 | 8 | 10 | 12) or the date is invalid and will be checked against the broadest regex.
+            regexPattern = "^((([0]){1}([1-9]){1})|([1]){1}([0-2]){1}){1}([-]|[/])(([0])([1-9])|([1])([0-9])|([2])([0-9])|([3])([0-1]){1}){1}([-]|[/])([0-9][0-9][0-9][0-9]){1}$";
+        }
+        System.out.println("The Regex is " + regexPattern.toString());
+        System.out.println("input: " + testInput);
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher match = pattern.matcher(testInput);
@@ -103,7 +166,7 @@ public class Regex12 {
     }
     
     static public String extendedAddress(String testInput) {
-        String regexPattern = "^([a-zA-Z]){1,50}[,][ ]([a-zA-Z]){1,12}[,][ ]([0-9]){1,10}$";
+        String regexPattern = "^([a-zA-Z ]){1,50}[,][ ]([A-Z]){1,12}[,]?[ ]([0-9]){5}([-]([0-9]{1,4}))?$";
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher match = pattern.matcher(testInput);
@@ -118,7 +181,7 @@ public class Regex12 {
     }
     
     static public String militaryTime(String testInput) {
-        String regexPattern = "^(([0][0-9][0][0]){1}|([1][0-9][0][0]){1}|([2][0-3][0][0]){1})$";
+        String regexPattern = "^(([0][0-9][0-5][0-9]){1}|([1][0-9][0-5][0-9]){1}|([2][0-3][0-5][0-9]){1})$";
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher match = pattern.matcher(testInput);
@@ -134,7 +197,7 @@ public class Regex12 {
 
     
     static public String usCurrency(String testInput) {
-        String regexPattern = "^([$]{1})([1-9]){1}(([0-9]{1})?([0-9]{1})([,]([0-9]{1,3})){0,9999999})?([.]([0-9]){1,2})?$";
+        String regexPattern = "^([$]{1})(([1-9]){1})?(([0-9]{1})?([0-9]{1})([,]([0-9]{3})){0,9999999})?([.]([0-9]){1,2})$";
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher match = pattern.matcher(testInput);
@@ -150,7 +213,7 @@ public class Regex12 {
 
         
     static public String url(String testInput) {
-        String regexPattern = "^([h][t][t][p][s]?[:][/][/])?([a-zA-Z\\-0-9]){1,75}([.]{1}[a-zA-Z]{2,99})$";
+        String regexPattern = "^((?i)([h][t][t][p][s]?){1}([:][/][/]){1})?([a-zA-Z\\-0-9/\\-]){1,75}(([.][^com][a-zA-Z/\\-]{1,99}){0,10})?([.]{1}[a-zA-Z]{2,99})?([/]{1})?([.]{1})?$";
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher match = pattern.matcher(testInput);
@@ -166,7 +229,7 @@ public class Regex12 {
 
         
     static public String password(String testInput) {
-        String regexPattern = "^((?!.*[a-z]{3})([a-zA-Z0-9!]{10,99}))$";
+        String regexPattern = "^((?!.*[a-z]{4})((?=.*[a-z]{1,99})(?=.*[A-Z]{1,99})(?=.*[!.,@#$%^&*()=+\\-f/?~`'\";:]{1,99})(?=.*[0-9]{1,99})){10,99}).*$";
         // String testInput = "";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher match = pattern.matcher(testInput);

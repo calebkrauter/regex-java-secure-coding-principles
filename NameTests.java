@@ -1,7 +1,7 @@
-/*
+/**
  * Individual Assignment - Regular Expressions
  * TCSS 483
- * Trae Claar
+ * @author Trae Claar (modified) by Caleb Krauter
  */
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,88 +14,88 @@ public class NameTests {
 
     @Test
     void testAcceptMyName() {
-        assertEquals("Claar, Trae, W", Regex.name("Claar, Trae, W"));
+        assertEquals("Clear, Trail, W", Regex12.nameOnRoster("Clear, Trail, W"));
     }
 
     @Test
     void testAcceptTom() {
-        assertEquals("Capaul, Tom, B", Regex.name("Capaul, Tom, B"));
+        assertEquals("Capaul, Tom, B", Regex12.nameOnRoster("Capaul, Tom, B"));
     }
 
     @Test
     void testAcceptGeorgeWashington() {
-        assertEquals("Washington, George, IDK", Regex.name("Washington, George, IDK"));
+        assertEquals("Washington, George, IDK", Regex12.nameOnRoster("Washington, George, IDK"));
     }
 
     @Test
     void testAcceptTwoMiddleInitials() {
-        assertEquals("Claar, Trae, WO", Regex.name("Claar, Trae, WO"));
+        assertEquals("Clear, Trail, WO", Regex12.nameOnRoster("Clear, Trail, WO"));
     }
 
     @Test
     void testAcceptThreeMiddleInitials() {
-        assertEquals("Claar, Trae, WOO", Regex.name("Claar, Trae, WOO"));
+        assertEquals("Clear, Trail, WOO", Regex12.nameOnRoster("Clear, Trail, WOO"));
     }
 
     @Test
     void testAcceptOneDigitLastName() {
-        assertEquals("C, Trae, W", Regex.name("C, Trae, W"));
+        assertEquals("C, Trae, W", Regex12.nameOnRoster("C, Trae, W"));
     }
 
     @Test
     void testAcceptOneDigitFirstName() {
-        assertEquals("Claar, T, W", Regex.name("Claar, T, W"));
+        assertEquals("Claar, T, W", Regex12.nameOnRoster("Claar, T, W"));
     }
 
     @Test
     void testAcceptNoMiddleInitial() {
-        assertEquals("Claar, Trae", Regex.name("Claar, Trae"));
+        assertEquals("Clear, Trail", Regex12.nameOnRoster("Clear, Trail"));
     }
 
     // bad input
 
     @Test
     void testRejectMissingFirstName() {
-        assertEquals("", Regex.name("Claar, , W"));
+        assertEquals("", Regex12.nameOnRoster("Claar, , W"));
     }
 
     @Test
     void testRejectMissingLastName() {
-        assertEquals("", Regex.name(", Trae, W"));
+        assertEquals("", Regex12.nameOnRoster(", Trae, W"));
     }
 
     @Test
     void testRejectMissingCommas() {
-        assertEquals("", Regex.name("Claar Trae W"));
+        assertEquals("", Regex12.nameOnRoster("Claar Trae W"));
     }
 
     @Test
     void testRejectFullMiddleName() {
-        assertEquals("", Regex.name("Claar, Trae, Weston"));
+        assertEquals("", Regex12.nameOnRoster("Clear, Trail, Weston"));
     }
 
     @Test
     void testRejectUncapitalizedLastName() {
-        assertEquals("", Regex.name("claar, Trae, W"));
+        assertEquals("", Regex12.nameOnRoster("Clear, Trail, W"));
     }
 
     @Test
     void testRejectUncapitalizedFirstName() {
-        assertEquals("", Regex.name("Claar, trae, W"));
+        assertEquals("", Regex12.nameOnRoster("Clear, Trail, W"));
     }
 
     @Test
     void testRejectUncapitalizedMiddleInitial() {
-        assertEquals("", Regex.name("Claar, Trae, w"));
+        assertEquals("", Regex12.nameOnRoster("Clear, Trail, w"));
     }
 
     @Test
     void testRejectDigits() {
-        assertEquals("", Regex.name("Claar1, Tr4ae, W"));
+        assertEquals("", Regex12.nameOnRoster("Claar1, Tr4ae, W"));
     }
 
     @Test
     void testRejectSpecialCharacters() {
-        assertEquals("", Regex.name("Cl@ar, Tra!e, W"));
+        assertEquals("", Regex12.nameOnRoster("Cl@ar, Tra!e, W"));
     }
 }
