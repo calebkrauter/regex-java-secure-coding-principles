@@ -1,8 +1,11 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 /**
- * @author Trae Claar (modified) by Caleb Krauter
+ * Individual Assignment - Regular Expressions
+ * TCSS 483
+ * @author Trae Claar and (modified) by Caleb Krauter
  */
+
 
 public class DateTests {
     // good input

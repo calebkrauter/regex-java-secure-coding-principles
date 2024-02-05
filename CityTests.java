@@ -1,8 +1,11 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 /**
+ * Individual Assignment - Regular Expressions
+ * TCSS 483
  * @author Trae Claar and (modified) by Caleb Krauter
  */
+
 public class CityTests {
 
     // good input

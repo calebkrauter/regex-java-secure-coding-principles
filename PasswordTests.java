@@ -1,14 +1,11 @@
-/**
- * Individual Assignment - Regular Expressions
- * TCSS 483
- * @author Trae Claar and (modified) by Caleb Krauter
- */
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 public class PasswordTests {
+    /**
+     * Individual Assignment - Regular Expressions
+     * TCSS 483
+     * @author Trae Claar and (modified) by Caleb Krauter
+     */
 
     // good input
 

@@ -1,6 +1,7 @@
 import java.time.Year;
 import java.util.regex.*;
 /**
+ * Implement Regex for each scenario. Used Regexr.com for designing Regular Expressions and some of my tests.
  * @author Caleb Krauter
  */
 public class Regex12 {
