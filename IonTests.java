@@ -14,83 +14,83 @@ public class IonTests {
 
     @Test
     void testAcceptIon() {
-        assertEquals("ion", Regex.ion("ion"));
+        assertEquals("ion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ion"));
     }
 
     @Test
     void testAcceptOnion() {
-        assertEquals("onion", Regex.ion("onion"));
+        assertEquals("onion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("onion"));
     }
 
     @Test
     void testAcceptOnionCapitalized() {
-        assertEquals("Onion", Regex.ion("Onion"));
+        assertEquals("Onion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("Onion"));
     }
 
     @Test
     void testAcceptAnimation() {
-        assertEquals("animation", Regex.ion("animation"));
+        assertEquals("animation", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("animation"));
     }
 
     @Test
     void testAcceptDoubleIon() {
-        assertEquals("ion ion", Regex.ion("ion ion"));
+        assertEquals("ion ion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ion ion"));
     }
 
     @Test
     void testAcceptTripleIon() {
-        assertEquals("ion ion ion", Regex.ion("ion ion ion"));
+        assertEquals("ion ion ion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ion ion ion"));
     }
 
     @Test
     void testAcceptTripleIonNonWhitespaceSeparators() {
-        assertEquals("ion ion ion", Regex.ion("ion$ion-ion"));
+        assertEquals("ion ion ion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ion$ion-ion"));
     }
 
     @Test
     void testAcceptDoubleIonLongerSeparator() {
-        assertEquals("ion ion", Regex.ion("ion    ansjk$dbasj&      ion"));
+        assertEquals("ion ion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ion    ansjk$dbasj&      ion"));
     }
 
     // bad input
 
     @Test
     void testRejectLion() {
-        assertEquals("", Regex.ion("lion"));
+        assertEquals("", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("lion"));
     }
 
     @Test
     void testRejectDoubleIonNoSeperator() {
-        assertEquals("", Regex.ion("ionion"));
+        assertEquals("", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ionion"));
     }
 
     @Test
     void testRejectIonCapitalized() {
-        assertEquals("", Regex.ion("Ion"));
+        assertEquals("", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("Ion"));
     }
 
     @Test
     void testRejectDigits() {
-        assertEquals("", Regex.ion("123ion"));
+        assertEquals("", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("123ion"));
     }
 
     @Test
     void testRejectNonWordCharacters() {
-        assertEquals("", Regex.ion("@.#a!nion"));
+        assertEquals("", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("@.#a!nion"));
     }
 
     @Test
     void testRejectIncludesButDoesNotEndWithIon() {
-        assertEquals("", Regex.ion("ionized"));
+        assertEquals("", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ionized"));
     }
 
     @Test
     void testRejectInvalidThenValid() {
-        assertEquals("ion", Regex.ion("lion ion"));
+        assertEquals("ion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("lion ion"));
     }
 
     @Test
     void testRejectValidThenInvalid() {
-        assertEquals("ion", Regex.ion("ion lion"));
+        assertEquals("ion", Regex12.wordsContainingOddNumOfAlphabeticalCharactersEndingInIon("ion lion"));
     }
 }

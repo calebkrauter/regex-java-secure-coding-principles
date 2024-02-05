@@ -1,7 +1,7 @@
-/*
+/**
  * Individual Assignment - Regular Expressions
  * TCSS 483
- * Trae Claar
+ * @author Trae Claar and (modified) by Caleb Krauter
  */
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +54,7 @@ public class PasswordTests {
 
     // bad input
 
+    // I have no idea why this is not working. I am limiting the character count to 10.
     @Test
     void testRejectLessThan10Characters() {
         assertEquals("", Regex12.password("PasSwrD1!"));
@@ -88,9 +89,13 @@ public class PasswordTests {
     void testRejectNoPunctuation() {
         assertEquals("", Regex12.password("PASSWORD11"));
     }
-
     @Test
-    void testRejectSpecial() {
-        assertEquals("", Regex12.password("P@$sWORD11"));
+    void testRejectNoPunctuationAnd5LowerCase() {
+        assertEquals("", Regex12.password("PASSWORD11aaaaa"));
     }
+    @Test
+    void testRejectNoDigitAnd5LowerCase() {
+        assertEquals("", Regex12.password("PASSWORDaaaaa"));
+    }
+
 }

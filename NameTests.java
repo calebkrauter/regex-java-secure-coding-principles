@@ -75,13 +75,8 @@ public class NameTests {
     }
 
     @Test
-    void testRejectUncapitalizedLastName() {
-        assertEquals("", Regex12.nameOnRoster("Clear, Trail, W"));
-    }
-
-    @Test
-    void testRejectUncapitalizedFirstName() {
-        assertEquals("", Regex12.nameOnRoster("Clear, Trail, W"));
+    void testRejectMissingMiddleInitialWithComma() {
+        assertEquals("", Regex12.nameOnRoster("Clear, Trail,"));
     }
 
     @Test
